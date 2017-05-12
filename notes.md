@@ -1,0 +1,3 @@
+- Use G Sheet to collect applicants, generate JSON from generated
+  -  Create Blog Post on the process
+- 
