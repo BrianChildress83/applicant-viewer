@@ -1,0 +1,24 @@
+<input type="text" class="form-control" *ngIf=enableFilter
+  (keyup)=getFilteredResults() placeholder="Filter"
+  [(ngModel)]=query/>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th *ngFor="let column of columns">
+        <div (click)=sortColumn(column)>
+          {{column.header}}
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let row of getData()">
+    <tr>
+      <td *ngFor="let column of columns" [class.active]="selectedRow === row">
+        <div (click)=selectRow(row)>
+          {{row[column.value]}}
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

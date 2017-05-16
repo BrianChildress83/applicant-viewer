@@ -1,19 +1,20 @@
-:root {
-  --mainColor: gray;
-}
+@import 'assets/styles/vars.css';
 
 body {
-    background-color: var(--mainColor);
+  background-color: var(--mainColor);
 }
 
 .center-fix {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .main-spinner {
-    font-size: 3em;
+  font-size: 3em;
 }
+
+@import 'app/applicant/applicant.css';
+@import 'app/components/datatable/datatable.css';
