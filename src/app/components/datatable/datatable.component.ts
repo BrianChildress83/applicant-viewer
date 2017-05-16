@@ -6,9 +6,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 
 export class DatatableComponent implements OnInit {
+  @Input() columns: Array < Object > ;
   @Input() dataset: Array < Object > ;
   @Input() enableFilter: boolean;
-  @Input() columns: Array < Object > ;
   @Output() selectedRowEmitter = new EventEmitter();
 
   columnObj: any; // Use for tracking datatable interactions
@@ -66,8 +66,10 @@ export class DatatableComponent implements OnInit {
    * @param { Object } row The row to set and emit
    */
   selectRow(row) {
+
     this.selectedRow = row;
     this.selectedRowEmitter.emit(row);
+
   }
 
   /**
@@ -105,6 +107,7 @@ export class DatatableComponent implements OnInit {
 
     let data = this.getData();
     this.filteredArray = this.sortByKey(data, column.value);
+
   }
 
 }

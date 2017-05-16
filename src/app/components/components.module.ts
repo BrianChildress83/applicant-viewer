@@ -1,17 +1,9 @@
-import {
-  NgModule
-} from '@angular/core';
-import {
-  CommonModule
-} from '@angular/common';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-import {
-  FormsModule
-} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
-import {
-  DatatableComponent
-} from './datatable/index';
+import { DatatableComponent } from './datatable/index';
 
 @NgModule({
   declarations: [
