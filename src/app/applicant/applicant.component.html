@@ -1,6 +1,14 @@
 <div class="applicant-container">
-  Applicant
-  <div *ngFor="let applicant of applicantsArray">
-    {{applicant.name}}
-  </div>
+
+  <h3>Viewing All Applicants</h3>
+
+  <p>*Use the filter input to search all applicants</p>
+  <app-datatable
+    [columns]=columns
+    [dataset]=applicantsArray
+    [enableFilter]=true
+    (selectedRowEmitter)="setSelectedRow($event)">
+  </app-datatable>
+
 </div>
+

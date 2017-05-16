@@ -1,0 +1,41 @@
+.applicant-container {
+  background: white;
+  height: 100%;
+}
+
+.applicant-container .label {
+  color: black;
+}
+
+.applicant-container ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.applicant-container .favorite-container {
+  position: relative;
+}
+
+.applicant-container .favorite-container button {
+  background: transparent;
+  border: none;
+  height: 50px;
+  outline: none;
+  width: 50px;
+}
+
+.applicant-container .favorite-container button:active {
+  transform: translateX(1px) translateY(1px);
+}
+
+.applicant-container .favorite-container button span {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.applicant-container .favorite-container button span.active {
+  opacity: 1;
+}

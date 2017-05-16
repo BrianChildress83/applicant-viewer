@@ -1,0 +1,45 @@
+<div class="applicant-container">
+  <div class="favorite-container">
+    <button class="btn-favorite" (click)="setFavorite()">
+      <span [class.active]=isFavorited class="fa fa-bookmark fa-3x"></span>
+      <span [class.active]=!isFavorited class="fa fa-bookmark-o fa-3x"></span>
+    </button>
+  </div>
+  <div class="field">
+    <span class="label">Name</span>
+    <span class="body">{{applicant.name}}</span>
+  </div>
+  <div class="field">
+    <span class="label">Position</span>
+    <span class="body">{{applicant.position}}</span>
+  </div>
+  <div class="field">
+    <span class="label">Applied</span>
+    <span class="body">{{applicant.applied}}</span>
+  </div>
+  <div class="field">
+    <span class="label">Experience</span>
+    <span class="body">{{applicant.experience}}</span>
+  </div>
+  <div class="availability">
+    <span class="label">Availability</span>
+    <ul>
+      <li *ngFor="let avail of applicant.availability">
+        <span>{{avail.date}}</span> : 
+        <span *ngIf="avail.availability === 0">Not Available</span>
+        <span *ngIf="avail.availability === 1">Mornings</span>
+        <span *ngIf="avail.availability === 2">Evenings</span>
+      </li>
+    </ul>
+  </div>
+  <div class="questions">
+    <span class="label">Questions</span>
+    <ul>
+      <li *ngFor="let ques of applicant.questions">
+        <span class="question-body">{{ques.text}}</span>
+        <span class="question-answer">{{ques.answer}}</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
