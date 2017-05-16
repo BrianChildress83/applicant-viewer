@@ -1,12 +1,12 @@
 {
-  "name": "angular-webpack-starter",
-  "version": "2.0.1",
-  "author": "Antony Budianto",
-  "description": "Angular Webpack Starter with extensible features",
+  "name": "applicant-viewer",
+  "version": "0.0.1",
+  "author": "Brian Childress",
+  "description": "An applicant viewing application built using Angular 4",
   "main": "src/app/main.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/antonybudianto/angular-webpack-starter.git"
+    "url": "https://github.com/BrianChildress83/applicant-viewer.git"
   },
   "engines": {
     "node": ">=6.9",
@@ -51,9 +51,6 @@
     "istanbul"
   ],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/antonybudianto/angular-webpack-starter/issues"
-  },
   "dependencies": {
     "@angular/common": "4.1.0",
     "@angular/compiler": "4.1.0",
