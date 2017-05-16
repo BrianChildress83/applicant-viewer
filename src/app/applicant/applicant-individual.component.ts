@@ -40,7 +40,7 @@ export class IndividualApplicantComponent implements OnDestroy, OnInit {
    * ngOnInit - Initializes with component
    */
   ngOnInit() {
-
+    this.applicant = {};
     // Watch for navigation, retrieve id from url params
     this.initialNavigation = this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -67,7 +67,7 @@ export class IndividualApplicantComponent implements OnDestroy, OnInit {
   getApplicantInformation(id) {
     this.applicantSvc.getApplicantById(id).subscribe(
       applicant => {
-        this.applicant = applicant;
+        this.setupApplicant(applicant[0]);
       });
   }
 
@@ -80,6 +80,58 @@ export class IndividualApplicantComponent implements OnDestroy, OnInit {
 
     // Toggle favorited status
     this.isFavorited = !this.isFavorited;
+  }
+
+  /**
+   * setupApplicant - Handles setting up applicant object based on data received from API,
+   * formatting, interpretting, etc.
+   * @param { Object } applicant The applicant object to use for display
+   */
+  setupApplicant(applicant) {
+    this.applicant.name = applicant.name;
+    this.applicant.position = applicant.position;
+    this.applicant.applied = applicant.applied;
+
+    // Experience
+    if (applicant.experience) {
+      if (applicant.experience > 1) {
+        this.applicant.experience = applicant.experience + ' yrs';
+      } else if (applicant.experience === 1) {
+        this.applicant.experience = applicant.experience + ' yr';
+      } else if (applicant.experience < 1) {
+        this.applicant.experience = 'Less than 1 yr';
+      } else {
+        this.applicant.experience = 'Not provided';
+      }
+    }
+
+    // Availability
+    if (applicant.availability) {
+      // let availArr = applicant.availability.split(',');
+      let obj = applicant.availability;
+      let availArr = [];
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          console.log(key, obj[key]);
+          let temp = {
+            date: key,
+            availability: obj[key]
+          };
+          // availArr.push(key + ':' + obj[key]);
+          availArr.push(temp);
+        }
+      }
+
+      this.applicant.availability = availArr;
+    }
+
+    // Questions
+    if (applicant.questions) {
+      this.applicant.questions = applicant.questions;
+    } else {
+      this.applicant.questions = [];
+    }
+
   }
 
 }
