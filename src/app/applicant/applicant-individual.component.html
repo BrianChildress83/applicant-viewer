@@ -1,0 +1,5 @@
+<div>{{applicant | json}}</div>
+<button (click)="setFavorite()">
+  <span *ngIf=isFavorited>Unfavorite</span>
+  <span *ngIf=!isFavorited>Favorite</span>
+</button>
