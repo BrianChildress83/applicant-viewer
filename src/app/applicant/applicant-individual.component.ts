@@ -112,7 +112,6 @@ export class IndividualApplicantComponent implements OnDestroy, OnInit {
       let availArr = [];
       for (let key in obj) {
         if (obj.hasOwnProperty(key)) {
-          console.log(key, obj[key]);
           let temp = {
             date: key,
             availability: obj[key]
