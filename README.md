@@ -47,6 +47,9 @@ and it'll also compile your changed TypeScripts files to Javascript files.
 > If any error occured when starting, please retry `npm run build:dll`.
 That means DLL build is too old and need to be refreshed.
 
+## Data
+If data is not present after starting server copy the data.json file from `/src/app/public` to the `/dist` folder.
+
 ## Testing
 This application comes with testing workflow
 
