@@ -71,9 +71,9 @@ export class ApplicantComponent implements OnInit {
 
     for (let app of applicants) {
       let fav = this.favoriteSvc.isFavorited(app.id);
-      // if (fav) {
-        fav ? app.favorited = true : app.favorited = false;
-      // }
+
+      app.favorited = fav;
+
       tempArr.push(app);
     }
 
