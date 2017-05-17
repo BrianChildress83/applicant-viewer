@@ -1,24 +1,32 @@
-<input type="text" class="form-control" *ngIf=enableFilter
-  (keyup)=getFilteredResults() placeholder="Filter"
-  [(ngModel)]=query/>
+<div class="datatable-container">
+  <input type="text" class="query-field" *ngIf=enableFilter
+    (keyup)=getFilteredResults() placeholder="Filter"
+    [(ngModel)]=query/>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th *ngFor="let column of columns">
-        <div (click)=sortColumn(column)>
-          {{column.header}}
-        </div>
-      </th>
-    </tr>
-  </thead>
-  <tbody *ngFor="let row of getData()">
-    <tr>
-      <td *ngFor="let column of columns" [class.active]="selectedRow === row">
-        <div (click)=selectRow(row)>
-          {{row[column.value]}}
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th *ngFor="let column of columns"
+          [class.active-sort]="column.value === columnObj.lastColumn">
+          <div (click)=sortColumn(column)>
+            {{column.header}}
+            <span *ngIf="column.value === columnObj.lastColumn">
+              <span *ngIf="columnObj.sortDir === 1" class="fa fa-caret-up"></span>
+              <span *ngIf="columnObj.sortDir === 2" class="fa fa-caret-down"></span>
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let row of getData()">
+      <tr>
+        <td *ngFor="let column of columns" [class.active]="selectedRow === row">
+          <div (click)=selectRow(row)>
+            <div *ngIf="row[column.value] === true" class="fa fa-star"></div>
+            <div *ngIf="row[column.value] !== true && row[column.value] !== false">{{row[column.value]}}</div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
