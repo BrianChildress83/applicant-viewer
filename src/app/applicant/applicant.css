@@ -4,9 +4,6 @@
   padding: 20px;
 }
 
-.applicant-container .field {
-
-}
 .applicant-container .label {
   color: black;
   font-size: 1.1em;
@@ -28,6 +25,7 @@
 .applicant-container .applicant-name {
   border-bottom: 1px solid lightgrey;
 }
+
 .applicant-container .favorite-container button {
   background: transparent;
   border: none;
