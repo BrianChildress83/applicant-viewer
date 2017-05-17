@@ -114,7 +114,7 @@ export class DatatableComponent implements OnInit {
 
     let data = this.getData();
     this.filteredArray = this.sortByKey(data, column.value);
-console.log(this.columnObj);
+
   }
 
 }
