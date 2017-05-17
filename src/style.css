@@ -1,4 +1,7 @@
-@import 'assets/styles/vars.css';
+:root {
+  --mainColor: #004190;
+  --av-dark-blue: #041972;
+}
 
 body {
   background-color: var(--mainColor);

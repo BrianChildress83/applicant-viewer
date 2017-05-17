@@ -23,7 +23,8 @@ export class DatatableComponent implements OnInit {
 
     // Setup column configuration obj
     this.columnObj = {
-      lastColumn: null
+      lastColumn: null,
+      sortDir: 0
     };
 
   }
@@ -68,7 +69,11 @@ export class DatatableComponent implements OnInit {
   selectRow(row) {
 
     this.selectedRow = row;
-    this.selectedRowEmitter.emit(row);
+
+    // Require a user to select a row twice before navigating
+    if (row === this.selectedRow) {
+      this.selectedRowEmitter.emit(row);
+    }
 
   }
 
@@ -99,10 +104,12 @@ export class DatatableComponent implements OnInit {
 
     // Set column tracking
     if (column.value === this.columnObj.lastColumn) {
+      this.columnObj.sortDir = 2; // Descending
       // Reverse array
       return this.filteredArray.reverse();
     } else {
       this.columnObj.lastColumn = column.value;
+      this.columnObj.sortDir = 1; // Ascending
     }
 
     let data = this.getData();

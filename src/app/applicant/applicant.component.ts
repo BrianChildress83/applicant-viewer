@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApplicantService } from '../services/applicant.service';
+import { FavoriteService } from '../services/favorite.service';
 
 /**
  * ApplicantComponent -  Used to display and interacte with all applicants
@@ -28,10 +29,14 @@ export class ApplicantComponent implements OnInit {
   }, {
     value: 'experience',
     header: 'Experience'
+  }, {
+    value: 'favorited',
+    header: 'Favorited'
   }];
 
   constructor(private router: Router,
-    private applicantSvc: ApplicantService) {}
+    private applicantSvc: ApplicantService,
+    private favoriteSvc: FavoriteService) {}
 
   /**
    * ngOnInit - Initializes with component
@@ -40,7 +45,7 @@ export class ApplicantComponent implements OnInit {
 
     this.applicantSvc.getAllApplicants().subscribe(
       applicants => {
-        this.applicantsArray = applicants;
+        this.setupApplicantsArray(applicants);
       });
 
   }
@@ -54,4 +59,27 @@ export class ApplicantComponent implements OnInit {
     this.router.navigate(['/applicant', evt.id]);
 
   }
+
+  /**
+   * setupApplicantsArray - Handles manipulation of the applicantsArray before being passed
+   * to the datatable component. Currently this sets a favorited flag on each element in the array
+   * this data would likely be returned from an API in the future.
+   */
+  setupApplicantsArray(applicants) {
+
+    let tempArr = [];
+
+    for (let app of applicants) {
+      let fav = this.favoriteSvc.isFavorited(app.id);
+
+      app.favorited = fav;
+
+      tempArr.push(app);
+    }
+
+    // Set applicants array to be displayed
+    this.applicantsArray = tempArr;
+
+  }
+
 }

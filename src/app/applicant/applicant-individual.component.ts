@@ -23,6 +23,15 @@ export class IndividualApplicantComponent implements OnDestroy, OnInit {
   initialNavigation: any;
   isFavorited: Boolean = false;
 
+  // Availability table configuration
+  columns = [{
+    value: 'day',
+    header: 'Day'
+  }, {
+    value: 'time',
+    header: 'Availablility'
+  }];
+
   constructor(private route: ActivatedRoute,
     private applicantSvc: ApplicantService,
     private favoriteSvc: FavoriteService) {}
@@ -113,10 +122,21 @@ export class IndividualApplicantComponent implements OnDestroy, OnInit {
       for (let key in obj) {
         if (obj.hasOwnProperty(key)) {
           let temp = {
-            date: key,
-            availability: obj[key]
+            day: key,
+            time: obj[key]
           };
-          // availArr.push(key + ':' + obj[key]);
+
+          // Convert interger for time to human string
+          if (temp.time === 0) {
+            temp.time = 'Not Available';
+          } else if (temp.time === 1) {
+            temp.time = 'Mornings';
+          } else if (temp.time === 2) {
+            temp.time = 'Evenings';
+          } else {
+            temp.time = 'Not Available';
+          }
+
           availArr.push(temp);
         }
       }
